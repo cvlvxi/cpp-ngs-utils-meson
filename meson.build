@@ -1,3 +1,6 @@
-project('tutorial', 'cpp')
-gtkdep = dependency('gtk+-3.0')
-executable('demo', 'main.cpp', dependencies : gtkdep)
+project('cpp-ngs-utils', 'cpp')
+
+lib =library('mylib', 'src/cngs/vcf.h')
+incdir = include_directories('src')
+
+executable('program', 'main.cpp', link_with: lib, include_directories: incdir)

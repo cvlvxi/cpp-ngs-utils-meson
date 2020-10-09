@@ -1,6 +1,7 @@
-#include <iostream>
+#include "cngs/vcf.h"
 
 int main() {
-  std::cout << "hello" << std::endl;
+  dog::doSomething();
+  dog::doSomething2();
   return 0;
 }

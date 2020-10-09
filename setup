@@ -1,0 +1,29 @@
+case "$1" in
+    gcc)
+        shift;
+        echo "======================== GCC ========================="
+        CC=gcc-10 CXX=g++-10 meson build/gcc $*;
+        pushd build/gcc;
+        ninja;
+        popd;
+        cp build/gcc/compile_commands.json compile_commands.json;
+        exit 1;
+        ;;
+    clang)
+        shift;
+        echo "======================== Clang ========================="
+        CC=clang CXX=clang++ meson build/clang $*;
+        pushd build/clang;
+        ninja;
+        popd;
+        rm compile_commands.json;
+        cp build/gcc/compile_commands.json compile_commands.json;
+        exit 1;
+        ;;
+    *)
+        echo "Error: Specify clang/gcc"
+        exit 1;
+        ;;
+esac;
+        
+
