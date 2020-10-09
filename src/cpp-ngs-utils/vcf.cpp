@@ -1,4 +1,6 @@
 #include "vcf.h"
+#include <range/v3/algorithm/count.hpp> // specific includes
+#include <vector>
 
 namespace cngs {
 
@@ -39,6 +41,19 @@ bool VCF::readVcf() {
   while (bcf_read(hts_fp.get(), bcf_header.get(), bcf_record.get()) == 0) {
     numVariants++;
   }
+
+  /* TESTING RANGE_V3 DELETE ME*/
+  std::vector<int> v{6, 2, 3, 4, 5, 6};
+  // note the count return is a numeric type
+  // like int or long -- auto below make sure
+  // it matches the implementation
+  auto c = ranges::count(v, 6);
+  std::cout << "vector:   " << c << '\n';
+
+  std::array<int, 6> a{6, 2, 3, 4, 5, 6};
+  c = ranges::count(a, 6);
+  std::cout << "array:    " << c << '\n';
+  /* DELETE ME */
 
   return true;
 }

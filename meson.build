@@ -6,9 +6,13 @@ project('cpp-ngs-utils', 'cpp',
 # subprojects
 ################################################
 htslib = subproject('htslib')
-lyra = subproject('lyra')
 htslib_dep = htslib.get_variable('htslib_dep')
+
+lyra = subproject('lyra')
 lyra_dep = lyra.get_variable('lyra_dep')
+
+range_v3 = subproject('range-v3')
+range_v3_dep = range_v3.get_variable('range_dep')
 
 ################################################
 # cpp-ngs-utils library
@@ -19,7 +23,7 @@ cngs_src = [
 ]
 cngs_lib = library('cngs',
     sources: cngs_src, 
-    dependencies: htslib_dep)
+    dependencies: [htslib_dep, range_v3_dep])
 
 ################################################
 # includes

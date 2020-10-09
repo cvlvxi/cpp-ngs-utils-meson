@@ -1,3 +1,5 @@
+set -e;
+
 ROOT_BUILD_DIR="build";
 
 mkdir -p $ROOT_BUILD_DIR;
@@ -52,8 +54,12 @@ echo meson $BUILD_DIR $RECONFIGURE_FLAG $*;
 meson $BUILD_DIR $RECONFIGURE_FLAG $*;
 ninja -C $BUILD_DIR;
 
-echo "==== Removing compile_commands.json ====" 
-rm compile_commands.json;
+echo "==== Removing compile_commands.json ===="
+if [ -f "compile_commands.json" ];
+then
+    rm compile_commands.json;
+fi
+
 echo "==== Symlinking compile_commands.json ===="
 ln -s $BUILD_DIR/compile_commands.json .;
 echo "Done"
