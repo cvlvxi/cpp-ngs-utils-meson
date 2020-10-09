@@ -1,22 +1,25 @@
+set -e;
 
-echo "== Removing compile_commands.json ==" 
-rm compile_commands.json;
-BUILD_DIR=""
-COMPILER_NAME=""
-COMPILER_FLAGS=""
+ROOT_BUILD_DIR="build";
+
+mkdir -p $ROOT_BUILD_DIR;
+
+BUILD_DIR="";
+COMPILER_NAME="";
+COMPILER_FLAGS="";
 
 case "$1" in
     gcc)
-        echo "== GCC ==" 
-        BUILD_DIR="build/gcc";
+        echo "==== GCC ====" 
+        BUILD_DIR="$ROOT_BUILD_DIR/gcc";
         COMPILER="gcc";
         COMPILER_FLAGS="CC=gcc-10 CXX=g++-10";
         shift;
         ;;
     clang)
         shift;
-        echo "== Clang ==" 
-        BUILD_DIR="build/clang";
+        echo "==== Clang ====" 
+        BUILD_DIR="$ROOT_BUILD_DIR/clang";
         COMPILER="clang";
         COMPILER_FLAGS="CC=clang CXX=clang++";
         CC=clang CXX=clang++ meson build/clang $*;
@@ -28,12 +31,19 @@ case "$1" in
 esac;
         
 
-echo "== Building ==" 
+echo "==== Building ====" 
 export $COMPILER_FLAGS;
-meson $BUILD_DIR $*;
-pushd $BUILD_DIR;
-ninja;
-popd;
-echo "== Symlinking compile_commands.json ==" 
+
+RECONFIGURE_FLAG=""
+if [ -d "$BUILD_DIR" ]; then
+    RECONFIGURE_FLAG="--reconfigure"
+fi
+    
+meson $BUILD_DIR $RECONFIGURE_FLAG $*;
+ninja -C $BUILD_DIR;
+
+echo "==== Removing compile_commands.json ====" 
+rm compile_commands.json;
+echo "==== Symlinking compile_commands.json ====" 
 ln -s $BUILD_DIR/compile_commands.json .;
 echo "Done"
