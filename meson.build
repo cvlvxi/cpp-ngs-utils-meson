@@ -9,7 +9,8 @@ htslib_dep = htslib.get_variable('htslib_dep')
 lyra_dep = lyra.get_variable('lyra_dep')
 
 cngs_src = [
-    'src/cpp-ngs-utils/vcf.h'
+    'src/cpp-ngs-utils/vcf.h',
+    'src/cpp-ngs-utils/vcf.cpp'
 ]
 
 cngs_lib = library('cngs', 
@@ -22,9 +23,10 @@ vcf_tool_src = [
     'src/tools/vcf/main.cpp'
 ]
 
-vcf_tool = executable('vcf', 
+vcf_tool = executable('vcf',
     sources: vcf_tool_src,
-    dependencies: [lyra_dep, htslib_dep], 
+    link_with: cngs_lib,
+    dependencies: [lyra_dep, htslib_dep],
     include_directories: incdir)
 
 
