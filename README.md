@@ -12,7 +12,18 @@ CC=gcc-10 CXX=g++-10 meson build/gcc
 CC=clang CXX=clang++ meson build/clang
 ```
 
-# Vscode
+# Setup
+
+```
+./setup gcc 
+./setup clang
+```
+
+- This will copy the compile_commands to the root directory (for clangd) 
+
+
+
+## Vscode
 - Install clangd extension
 - `.vscode/settings.json`
 - Recommend not having the C/C++ extension installed
@@ -27,12 +38,9 @@ CC=clang CXX=clang++ meson build/clang
     "clangd.arguments": ["-log=verbose", "-pretty", "--background-index"]
 ```
 
-# Setup
+- Note: `I've had a lot of issues with getting this working. Use Clion preferrably`
 
-```
-./setup gcc 
-./setup clang
-```
+## Clion
 
-- This will copy the compile_commands to the root directory (for clangd) 
-
+- Ensure that setup is run before opening project 
+- This will look for the compile_commands.json symlink the root folder 
