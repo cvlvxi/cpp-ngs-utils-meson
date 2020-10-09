@@ -1,4 +1,5 @@
-# C++ Ngs Utils
+# C++ NGS Utils Playground
+- `Just a playground do not use this`
 - For C++17 (hopefully C++20 at some point) Next Generation Sequencing Utilities
 - Build with `Meson Build` + `Ninja`
 
