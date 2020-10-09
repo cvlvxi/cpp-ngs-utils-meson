@@ -9,7 +9,7 @@ pip install meson
 pip install ninja
 ```
 
-## Configure build
+## Meson Configure build
 
 ### GCC-10
 
@@ -22,6 +22,10 @@ CC=gcc-10 CXX=g++-10 meson build/gcc
 ```
 CC=clang CXX=clang++ meson build/clang
 ```
+
+### Git 
+
+To use a different git binary instead of the default setup `export PATH=/path/to/new/git:$PATH`
 
 # Setup
 
