@@ -6,6 +6,7 @@
 #include <iostream>
 #include <optional>
 #include <string>
+#include <vector>
 
 namespace fs = std::filesystem;
 
@@ -14,6 +15,8 @@ class VCF {
 public:
   fs::path filePath;
   int numVariants = 0;
+  std::vector<std::string> samples;
+
   static std::optional<VCF> create(std::string filePath);
   bool readVcf();
 
@@ -21,11 +24,10 @@ private:
   /**
    * htslib related items are hidden as private.
    * For raw pointers from htslib let's wrap them in unique_ptr and specify
-   * a custom deletor. See unique_ptr:
-   * https://en.cppreference.com/w/cpp/memory/unique_ptr Note: (Function Pointer
-   * Signature) for htsFile cleanup method
-   *  * Example: int (*)(htsFile *) for hts_close: Takes raw htsFile ptr and
-   * cleans up
+   * a custom deletor.
+   * See unique_ptr: https://en.cppreference.com/w/cpp/memory/unique_ptr
+   * Note: Function Pointer Signature for htsFile cleanup method
+   *  i.e. int (*)(htsFile *) for hts_close
    */
   using htsDtor = int (*)(htsFile *);
   using bcfHdrDtor = void (*)(bcf_hdr_t *);

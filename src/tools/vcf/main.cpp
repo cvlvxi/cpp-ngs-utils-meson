@@ -7,7 +7,6 @@ using namespace cngs;
 int main(int argc, const char **argv) {
   std::string vcfFile;
   bool get_help = false;
-
   lyra::cli cli;
   cli.add_argument(lyra::help(get_help))
       .add_argument(lyra::opt(vcfFile, "vcfFile")
