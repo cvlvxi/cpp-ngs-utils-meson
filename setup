@@ -1,35 +1,42 @@
-set -e;
-
 ROOT_BUILD_DIR="build";
 
 mkdir -p $ROOT_BUILD_DIR;
 
 BUILD_DIR="";
-COMPILER_NAME="";
 COMPILER_FLAGS="";
+
+GCC="gcc-10"
+GXX="g++-10"
+CLANGCC="clang"
+CLANGXX="clang++"
 
 case "$1" in
     gcc)
-        echo "==== GCC ====" 
+        echo "==== GCC ===="
         BUILD_DIR="$ROOT_BUILD_DIR/gcc";
-        COMPILER="gcc";
-        COMPILER_FLAGS="CC=gcc-10 CXX=g++-10";
+        COMPILER_FLAGS="CC=$GCC CXX=$GXX";
         shift;
         ;;
     clang)
         shift;
         echo "==== Clang ====" 
         BUILD_DIR="$ROOT_BUILD_DIR/clang";
-        COMPILER="clang";
-        COMPILER_FLAGS="CC=clang CXX=clang++";
-        CC=clang CXX=clang++ meson build/clang $*;
+        COMPILER_FLAGS="CC=$CLANGCC CXX=$CLANGXX";
         ;;
     *)
         echo "Error: Specify clang/gcc"
         exit 1;
         ;;
 esac;
-        
+
+if [ "$1" == "test" ];
+then
+    echo "==== Testing ===="
+    pushd $BUILD_DIR;
+    meson test;
+    popd;
+    exit 1;
+fi
 
 echo "==== Building ====" 
 export $COMPILER_FLAGS;
@@ -38,15 +45,15 @@ RECONFIGURE_FLAG=""
 if [ -d "$BUILD_DIR" ]; then
     RECONFIGURE_FLAG="--reconfigure"
 fi
-    
+
+echo "==== Running ===="
+echo meson $BUILD_DIR $RECONFIGURE_FLAG $*;
+
 meson $BUILD_DIR $RECONFIGURE_FLAG $*;
 ninja -C $BUILD_DIR;
 
 echo "==== Removing compile_commands.json ====" 
-if [ -f "compile_commands.json" ];
-then
-    rm compile_commands.json;
-fi
-echo "==== Symlinking compile_commands.json ====" 
+rm compile_commands.json;
+echo "==== Symlinking compile_commands.json ===="
 ln -s $BUILD_DIR/compile_commands.json .;
 echo "Done"
