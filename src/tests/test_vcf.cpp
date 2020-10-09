@@ -2,7 +2,6 @@
 #include <tests/unit_test_framework.h>
 #include <tests/utils.h>
 #include <cpp-ngs-utils/vcf.h>
-#include <iostream>
 #include <optional>
 #include <filesystem>
 
