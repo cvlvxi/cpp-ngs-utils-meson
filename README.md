@@ -1,12 +1,23 @@
-# Configure build
+# C++ Ngs Utils
+- For C++17 (hopefully C++20 at some point) Next Generation Sequencing Utilities
+- Build with `Meson Build` + `Ninja`
 
-## GCC-10
+Installing:
+
+```
+pip install meson
+pip install ninja
+```
+
+## Configure build
+
+### GCC-10
 
 ```
 CC=gcc-10 CXX=g++-10 meson build/gcc 
 ```
 
-## Clang
+### Clang
 
 ```
 CC=clang CXX=clang++ meson build/clang
