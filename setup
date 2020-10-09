@@ -1,24 +1,25 @@
+
+echo "== Removing compile_commands.json ==" 
+rm compile_commands.json;
+BUILD_DIR=""
+COMPILER_NAME=""
+COMPILER_FLAGS=""
+
 case "$1" in
     gcc)
+        echo "== GCC ==" 
+        BUILD_DIR="build/gcc";
+        COMPILER="gcc";
+        COMPILER_FLAGS="CC=gcc-10 CXX=g++-10";
         shift;
-        echo "======================== GCC ========================="
-        CC=gcc-10 CXX=g++-10 meson build/gcc $*;
-        pushd build/gcc;
-        ninja;
-        popd;
-        cp build/gcc/compile_commands.json compile_commands.json;
-        exit 1;
         ;;
     clang)
         shift;
-        echo "======================== Clang ========================="
+        echo "== Clang ==" 
+        BUILD_DIR="build/clang";
+        COMPILER="clang";
+        COMPILER_FLAGS="CC=clang CXX=clang++";
         CC=clang CXX=clang++ meson build/clang $*;
-        pushd build/clang;
-        ninja;
-        popd;
-        rm compile_commands.json;
-        cp build/gcc/compile_commands.json compile_commands.json;
-        exit 1;
         ;;
     *)
         echo "Error: Specify clang/gcc"
@@ -27,3 +28,12 @@ case "$1" in
 esac;
         
 
+echo "== Building ==" 
+export $COMPILER_FLAGS;
+meson $BUILD_DIR $*;
+pushd $BUILD_DIR;
+ninja;
+popd;
+echo "== Symlinking compile_commands.json ==" 
+ln -s $BUILD_DIR/compile_commands.json .;
+echo "Done"
