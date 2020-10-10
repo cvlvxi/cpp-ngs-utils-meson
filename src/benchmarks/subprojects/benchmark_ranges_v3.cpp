@@ -1,7 +1,7 @@
 #include <benchmark/benchmark.h>
 #include <range/v3/view/iota.hpp>
 
-static void BM_SomeFunction(benchmark::State& state) {
+static void BM_SomeFunction(benchmark::State &state) {
     // Perform setup here
     for (auto _ : state) {
         // This code gets timed
