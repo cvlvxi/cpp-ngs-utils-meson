@@ -30,12 +30,19 @@ To use a different git binary instead of the default setup `export PATH=/path/to
 
 # Setup
 
+- Simple wrapper for running meson build / test / benchmark
+
 ```
 ./setup gcc 
 ./setup clang
+./setup gcc test
+./setup clang test
+./setup gcc benchmark
+./setup clang benchmark
 ```
 
 - This will copy the compile_commands to the root directory (for clangd) 
+- Adding test/benchmark will run the tests/benchmarks respectfully
 
 
 
