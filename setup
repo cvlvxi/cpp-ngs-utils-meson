@@ -38,6 +38,19 @@ then
     meson test;
     popd;
     exit 1;
+elif [ "$1" == "benchmark" ];
+then
+    echo "==== Benchmarking ====";
+    pushd $BUILD_DIR;
+    for i in `ls -1 benchmark_*`;
+    do
+        if [[ ! "$i" == *"."* ]];
+        then
+            echo
+            ./$i;
+        fi
+    done;
+    exit 1;
 fi
 
 echo "==== Building ====" 

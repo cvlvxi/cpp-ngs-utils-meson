@@ -33,8 +33,8 @@ absl_status_dep = abseil.get_variable('absl_status_dep')
 
 # Google Benchmark
 gbenchmark = subproject('google-benchmark')
-google_benchmark_dep = gbenchmark.get_variable('google_benchmark_dep')
-google_benchmark_main_dep = gbenchmark.get_variable('google_benchmark_main_dep')
+gbenchmark_dep = gbenchmark.get_variable('google_benchmark_dep')
+gbenchmark_main_dep = gbenchmark.get_variable('google_benchmark_main_dep')
 
 ################################################
 # cpp-ngs-utils library
@@ -93,3 +93,17 @@ endforeach
 
 
 
+################################################
+# benchmarks
+################################################
+benchmark_programs = [
+    ['benchmark_ranges_v3', ['src/benchmarks/subprojects/benchmark_ranges_v3.cpp'], [gbenchmark_dep, range_v3_dep]]
+]
+
+foreach p : benchmark_programs
+    exe = executable(p[0],
+                sources: p[1],
+                link_with:[test_utils_lib, cngs_lib],
+                include_directories: [incdir, incdir_extern],
+                dependencies: p[2])
+endforeach

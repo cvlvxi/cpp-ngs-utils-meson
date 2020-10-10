@@ -1,5 +1,6 @@
 subprojects/*
 !subprojects/*.wrap
+benchmark
 compile_commands.json
 .clangd
 builddir
