@@ -1,6 +1,16 @@
 #pragma once
 
-namespace cngs {
+#include <iostream>
+#include <range/v3/view/iota.hpp>
 
-class Region {};
+using std::cout;
+
+namespace cngs {
+class Region {
+public:
+    static void test() {
+        cout << "Hello" << "\n";
+    }
+private:
+};
 } // namespace cngs
