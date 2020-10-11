@@ -1,8 +1,11 @@
-vcf_tool_src = [
-    'vcf/main.cpp'
+tool_programs  = [
+    ['vcf', ['vcf.cpp'], [htslib_dep, lyra_dep]],
 ]
-vcf_tool = executable('vcf',
-    sources: vcf_tool_src,
-    link_with: cngs_lib,
-    dependencies: [lyra_dep, htslib_dep],
-    include_directories: incdir)
+
+foreach p : tool_programs
+    exe = executable(p[0],
+                sources: p[1],
+                link_with:[cngs_lib],
+                include_directories: [incdir],
+                dependencies: p[2])
+endforeach
