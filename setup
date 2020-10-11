@@ -31,6 +31,10 @@ case "$1" in
         ;;
 esac;
 
+
+#######################################
+# Available Commands
+#######################################
 if [ "$1" == "test" ];
 then
     echo "==== Testing ===="
@@ -41,7 +45,7 @@ then
 elif [ "$1" == "benchmark" ];
 then
     echo "==== Benchmarking ====";
-    pushd $BUILD_DIR;
+    pushd $BUILD_DIR/src/benchmarks;
     for i in `ls -1 benchmark_*`;
     do
         if [[ ! "$i" == *"."* ]];
