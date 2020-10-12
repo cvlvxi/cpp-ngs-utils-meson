@@ -10,7 +10,7 @@ namespace fs = std::filesystem;
 
 // Move the fs::path returned from getFixture good_vcf so it doesn't get
 // destroyed
-fs::path good_vcf = Tests::getFixture("allele_depth_test.vcf");
+fs::path good_vcf = Tests::getFixture("vcfs/allele_depth_test.vcf");
 
 TEST(test_construction) {
     std::optional<VCF> v = VCF::create(good_vcf.c_str());
