@@ -28,3 +28,7 @@ absl_status_dep = abseil.get_variable('absl_status_dep')
 gbenchmark = subproject('google-benchmark')
 gbenchmark_dep = gbenchmark.get_variable('google_benchmark_dep')
 gbenchmark_main_dep = gbenchmark.get_variable('google_benchmark_main_dep')
+
+# Fmt!
+fmt = subproject('fmt')
+fmt_dep = fmt.get_variable('fmt_dep')

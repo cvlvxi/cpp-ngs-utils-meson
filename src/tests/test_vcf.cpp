@@ -10,10 +10,10 @@ namespace fs = std::filesystem;
 
 // Move the fs::path returned from getFixture good_vcf so it doesn't get
 // destroyed
-fs::path good_vcf = Tests::getFixture("vcfs/allele_depth_test.vcf");
+const fs::path goodVcf = Tests::getFixture("vcfs/allele_depth_test.vcf");
 
 TEST(test_construction) {
-    std::optional<VCF> v = VCF::create(good_vcf.c_str());
+    std::optional<VCF> v = VCF::create(goodVcf.c_str());
     ASSERT_TRUE(v.has_value())
 }
 
@@ -23,7 +23,7 @@ TEST(test_construction_invalid_filepath) {
 }
 
 TEST(test_vcf_read_lines) {
-    std::optional<VCF> v = VCF::create(good_vcf.c_str());
+    std::optional<VCF> v = VCF::create(goodVcf.c_str());
     // Optional use pointer syntax
     ASSERT_TRUE(v->readVcf());
     ASSERT_TRUE(v->numVariants == 3);

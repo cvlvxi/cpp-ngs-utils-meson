@@ -1,0 +1,22 @@
+[Header],,,,,,,,,,,,,,,,,,,,,
+IEMFileVersion,4,,,,,,,,,,,,,,,,,,,,
+Investigator Name,Automation,,,,,,,,,,,,,,,,,,,,
+Experiment Name,,,,,,,,,,,,,,,,,,,,,
+Date,30/03/2017,,,,,,,,,,,,,,,,,,,,
+Workflow,GenerateFASTQ,,,,,,,,,,,,,,,,,,,,
+Application,HiSeq FASTQ Only,,,,,,,,,,,,,,,,,,,,
+Assay,,,,,,,,,,,,,,,,,,,,,
+Description,,,,,,,,,,,,,,,,,,,,,
+Chemistry,Amplicon,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,
+[Reads],,,,,,,,,,,,,,,,,,,,,
+151,,,,,,,,,,,,,,,,,,,,,
+151,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,
+[Settings],,,,,,,,,,,,,,,,,,,,,
+Adapter,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,
+[Data],,,,,,,,,,,,,,,,,,,,,
+Lane,Sample_ID,Sample_Name,Sample_Plate,Sample_Well,I7_Index_ID,index,I5_Index_ID,index2,Sample_Project,Description,LIMS_ID,ExternalID,batch,SEX,Assay,Laboratory,Project_owner,internal_external,Configuration,Adaptor,Re-demultiplex
+1,161763,,,,P7 i4,TCCTGAGC,P5 i13,GCGATCTA,,,LIMS_ID1,,BATCHNAME1,,ASSAY1,LAB1,PERSON A,external,"Y151,I8,I8,Y151",AAAGTC,Y
+1,161764,,,,P7 i4,TCCTGAGC,P5 i14,GCGATCTA,,,LIMS_ID2,,BATCHNAME1,,ASSAY2,LAB2,PERSON B,internal,"Y151,I8,I8,Y152",AAAGTC,Y
