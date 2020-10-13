@@ -7,4 +7,8 @@ cngs_src = [
 ]
 cngs_lib = library('cngs',
     sources: cngs_src,
-    dependencies: [htslib_dep, range_v3_dep, fmt_dep])
+    dependencies: [
+        htslib_dep,
+        range_v3_dep,
+        fmt_dep,
+        absl_strings_dep])

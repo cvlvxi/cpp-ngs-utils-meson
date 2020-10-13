@@ -15,10 +15,17 @@ namespace cngs {
         std::ifstream fstream(filePath);
         if (!fstream.is_open()) throw std::runtime_error("Could not open file");
 
-        //        std::string_view line;
         std::string line;
         while (std::getline(fstream, line)) {
-            fmt::print("{}\n", line);
+            sv sv_line = sv(line);
+            if (absl::StrContains(sv_line, h_Header) ||
+                absl::StrContains(sv_line, h_Reads) ||
+                absl::StrContains(sv_line, h_Settings)) {
+                continue;
+            }
+            // We need to get the data from here
+            auto x = absl::StrSplit(sv_line, ",");
+            fmt::print("{}", x);
         }
     }
 }// namespace cngs

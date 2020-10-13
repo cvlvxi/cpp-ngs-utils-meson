@@ -7,7 +7,7 @@ test_utils_lib = library('test_utils_lib', sources: test_utils_src)
 test_programs = [
     ['test_vcf', ['test_vcf.cpp'], [htslib_dep]],
     ['test_region', ['test_region.cpp'], [range_v3_dep]],
-    ['test_samplesheet', ['test_samplesheet.cpp'], []]
+    ['test_samplesheet', ['test_samplesheet.cpp'], [absl_strings_dep]]
 ]
 
 foreach p : test_programs
