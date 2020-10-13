@@ -25,7 +25,9 @@ namespace cngs {
             }
             // We need to get the data from here
             auto x = absl::StrSplit(sv_line, ",");
-            fmt::print("{}", x);
+            for (const auto &i : x) {
+                fmt::print("{}", i);
+            }
         }
     }
 }// namespace cngs
