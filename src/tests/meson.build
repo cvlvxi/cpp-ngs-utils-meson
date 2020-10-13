@@ -15,6 +15,6 @@ foreach p : test_programs
                 sources: p[1],
                 link_with:[test_utils_lib, cngs_lib],
                 include_directories: [incdir, incdir_extern],
-                dependencies: p[2])
+                dependencies: p[2] + [fmt_dep])
     test(p[0], exe)
 endforeach
